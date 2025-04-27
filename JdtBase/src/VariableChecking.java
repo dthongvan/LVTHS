@@ -15,14 +15,12 @@ public class VariableChecking {
         return null;
     }
     public static void main(String[] args) {
-        String filePath  = "JdtBase/src/Test.java";
+        String filePath  = "JdtBase/Test/Test.java";
         String fileContent = (new VariableChecking()).readFile(filePath);
         ASTParser parser = ASTParser.newParser(AST.JLS8);
         parser.setSource(fileContent.toCharArray());
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
         final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
-//        System.out.println(cu);
-//        System.out.printf(cu.getJavaElement().getElementName());
         cu.accept(new VariableCheckingVisitor() );
     }
 }
